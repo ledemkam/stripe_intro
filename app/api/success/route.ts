@@ -24,15 +24,8 @@ export const GET = async (request: NextRequest) => {
     }
 
     const customerData = customer as Stripe.Customer;
-    return NextResponse.json(
-      {
-        name: customerData.name,
-        email: customerData.email,
-      },
-      { status: 200 }
-    );
-  } catch (error: any) {
-    console.error("Error occurred:", error);
+    return NextResponse.json(customerData, { status: 200 });
+  } catch (error) {
     return NextResponse.json(
       { error: "Error retrieving customer data" },
       { status: 500 }
